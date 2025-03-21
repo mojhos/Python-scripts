@@ -15,9 +15,10 @@ volumes = ec2_client.describe_volumes(
     ]
 )
 #make a list of all snapshots for each volume we found in previous list and find them by VolumeId filtering
+
 for volume in volumes['Volumes']:
     snapshots = ec2_client.describe_snapshots(
-        OwnerId=['self'],
+        OwnerIds=['self'],
         Filters=[
             {
                 'Name': 'volume-id',
